@@ -1,4 +1,8 @@
-function preload() {
+noseX = 0;
+noseY = 0;
+
+function preload(){
+    mustache_pic = loadImage('mustache.png');
 }
 let video;
 let poseNet;
@@ -19,6 +23,8 @@ function setup() {
             console.log(poses);
             console.log('nose X = ' + poses[0].pose.nose.x);
             console.log('nose Y = ' + poses[0].pose.nose.y);
+            noseX = results[0].pose.nose.x -50;
+            noseY = results[0].pose.nose.y +20;
         }
     })
 }
@@ -29,7 +35,7 @@ function modelLoaded() {
 
 function draw() {
     image(webcam, 0, 0, 400, 300);
-
+    image(mustache_pic, noseX, noseY, 100, 20);
 }
 
 function take_snapshot() {
